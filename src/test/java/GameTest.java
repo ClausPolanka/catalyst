@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 public class GameTest {
     private static final int SAME = 1;
-    private int b1y = 2;
+    private static final int B1Y = 2;
 
     @Test
     public void twoHorizontalBlocksDoNotOverlap() {
@@ -58,8 +58,8 @@ public class GameTest {
     @Test
     public void oneVerticalAndOneHorizontalBlockWithDifferentYCoordinateDoNotOverlap() {
         Game game = new Game(6, 5);
-        game.add(new BlockBuilder().withX(SAME).withY(b1y).horizontal().build());
-        game.add(new BlockBuilder().withX(SAME).withY(b1y + 1).vertical().build());
+        game.add(new BlockBuilder().withX(SAME).withY(B1Y).horizontal().build());
+        game.add(new BlockBuilder().withX(SAME).withY(B1Y + 1).vertical().build());
         assertFalse("Must not overlap", game.overlap());
     }
 
@@ -74,8 +74,8 @@ public class GameTest {
     @Test public void
     oneVerticalAndHorizontalBlockWithDifferentYCoordinateButVerticalBlockHasNecessaryLengthToOverlap() {
         Game game = new Game(6, 5);
-        game.add(new BlockBuilder().withX(SAME).withY(b1y).horizontal().build());
-        game.add(new BlockBuilder().withX(SAME).withY(b1y - 1).withLength(2).vertical().build());
+        game.add(new BlockBuilder().withX(SAME).withY(B1Y).horizontal().build());
+        game.add(new BlockBuilder().withX(SAME).withY(B1Y - 1).withLength(2).vertical().build());
         assertTrue("Must overlap", game.overlap());
     }
 }
