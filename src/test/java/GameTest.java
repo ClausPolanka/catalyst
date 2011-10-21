@@ -27,7 +27,7 @@ public class GameTest {
     public void twoHorizontalBlocksOverlap() {
         Game game = new Game(6, 5);
         game.add(new BlockBuilder().withX(1).withY(SAME).withLength(3).horizontal().build());
-        game.add(new BlockBuilder().withX(3).withY(SAME).withLength(1).horizontal().build());
+        game.add(new BlockBuilder().withX(3).withY(SAME).horizontal().build());
         assertTrue("Must overlap", game.overlap());
     }
 
@@ -35,7 +35,7 @@ public class GameTest {
     public void twoVerticalBlocksDoNotOverlap() {
         Game game = new Game(6, 5);
         game.add(new BlockBuilder().withX(SAME).withY(1).withLength(3).vertical().build());
-        game.add(new BlockBuilder().withX(SAME).withY(4).withLength(1).vertical().build());
+        game.add(new BlockBuilder().withX(SAME).withY(4).vertical().build());
         assertFalse("Must not overlap", game.overlap());
     }
 
@@ -43,7 +43,7 @@ public class GameTest {
     public void twoVerticalBlocksOverlap() {
         Game game = new Game(6, 5);
         game.add(new BlockBuilder().withX(SAME).withY(1).withLength(3).vertical().build());
-        game.add(new BlockBuilder().withX(SAME).withY(3).withLength(1).vertical().build());
+        game.add(new BlockBuilder().withX(SAME).withY(3).vertical().build());
         assertTrue("Must overlap", game.overlap());
     }
 
@@ -58,23 +58,23 @@ public class GameTest {
     @Test
     public void oneVerticalAndOneHorizontalBlockWithDifferentYCoordinateDoNotOverlap() {
         Game game = new Game(6, 5);
-        game.add(new BlockBuilder().withX(SAME).withY(1).withLength(1).horizontal().build());
-        game.add(new BlockBuilder().withX(SAME).withY(2).withLength(2).vertical().build());
+        game.add(new BlockBuilder().withX(SAME).withY(b1y).horizontal().build());
+        game.add(new BlockBuilder().withX(SAME).withY(b1y + 1).vertical().build());
         assertFalse("Must not overlap", game.overlap());
     }
 
     @Test
     public void oneVerticalAndOneHorizontalBlockWithSameYCoordinateOverlap() {
         Game game = new Game(6, 5);
-        game.add(new BlockBuilder().withX(SAME).withY(SAME).withLength(SAME).horizontal().build());
-        game.add(new BlockBuilder().withX(SAME).withY(SAME).withLength(SAME).vertical().build());
+        game.add(new BlockBuilder().withX(SAME).withY(SAME).horizontal().build());
+        game.add(new BlockBuilder().withX(SAME).withY(SAME).vertical().build());
         assertTrue("Must overlap", game.overlap());
     }
 
     @Test public void
     oneVerticalAndHorizontalBlockWithDifferentYCoordinateButVerticalBlockHasNecessaryLengthToOverlap() {
         Game game = new Game(6, 5);
-        game.add(new BlockBuilder().withX(SAME).withY(b1y).withLength(1).horizontal().build());
+        game.add(new BlockBuilder().withX(SAME).withY(b1y).horizontal().build());
         game.add(new BlockBuilder().withX(SAME).withY(b1y - 1).withLength(2).vertical().build());
         assertTrue("Must overlap", game.overlap());
     }

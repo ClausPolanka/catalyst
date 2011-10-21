@@ -3,7 +3,7 @@ public class BlockBuilder {
     private char orientation;
     private int id;
     private int x;
-    private int length;
+    private int length = 1;
 
     public BlockBuilder withY(int y) {
         this.y = y;
